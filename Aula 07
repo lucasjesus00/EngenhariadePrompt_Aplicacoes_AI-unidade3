@@ -1,0 +1,30 @@
+#Aula 07: Programação Assistida, Nome: Lucas Jesus#
+
+numeros = [1,2,3]
+soma = 0
+i = 0
+
+while i < len(numeros):
+
+    soma += numeros[i]
+
+    i += 1
+
+print(numeros) 
+
+
+numeros = [1, 2, 3]
+soma = 0
+
+for i, n in enumerate(numeros):
+    print(f"Somando o índice {i} (valor: {n})")
+    soma += n
+
+    # Define a lista de números
+numeros = [1, 2, 3]
+
+# A função sum() percorre a lista e retorna o total acumulado
+soma = sum(numeros)
+
+# Exibe o resultado final no console
+print(soma)
