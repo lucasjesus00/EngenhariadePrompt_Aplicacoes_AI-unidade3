@@ -1,2 +1,2 @@
-Criação do gitub
+Criação do github
 Aula 01
