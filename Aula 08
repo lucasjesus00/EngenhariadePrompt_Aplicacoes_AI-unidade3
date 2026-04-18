@@ -2,7 +2,7 @@
 #Automação com Ai
 #nome: Lucas Mendes
 
-missão 1
+#missão 01
 
 # Função que verifica a temperatura
 def verificar_temperatura(temp):
@@ -148,3 +148,200 @@ for arquivo in os.listdir(diretorio):
 
 # Mensagem final indicando sucesso
 print("Organização concluída com sucesso!")
+
+# missão 02
+
+import requests  # Biblioteca para fazer requisições HTTP
+
+# Função para consultar o CEP
+def consultar_cep(cep):
+    # URL com ERRO INTENCIONAL (faltando uma letra em "viacep")
+    url = "https://viacp.com.br/ws/" + cep + "/json/"
+    
+    try:
+        # Faz a requisição para a API
+        response = requests.get(url)
+        
+        # Verifica se houve erro HTTP (ex: 404, 500)
+        response.raise_for_status()
+        
+        # Converte a resposta para JSON
+        dados = response.json()
+        
+        # Exibe os dados formatados
+        print("CEP: " + dados.get("cep", "N/A"))
+        print("Logradouro: " + dados.get("logradouro", "N/A"))
+        print("Bairro: " + dados.get("bairro", "N/A"))
+        print("Cidade: " + dados.get("localidade", "N/A"))
+        print("Estado: " + dados.get("uf", "N/A"))
+
+    except requests.exceptions.RequestException as erro:
+        # Captura erros de conexão, URL inválida, etc.
+        print("Erro ao acessar a API: " + str(erro))
+        
+        # Simulação de análise por IA (tipo Replit)
+        print("\n[IA] Diagnóstico:")
+        print("- Possível erro na URL da API.")
+        print("- Verifique se o endereço está correto.")
+        print("- Sugestão: usar 'https://viacep.com.br/ws/CEP/json/'")
+
+# Entrada do usuário
+cep_usuario = input("Digite o CEP (somente números): ")
+
+# Chamada da função
+consultar_cep(cep_usuario)
+
+#missão 03
+
+import time  # Usado para simular intervalo entre verificações
+
+# Define o limite crítico do sistema
+LIMITE_CRITICO = 80
+
+# Verifica se o valor ultrapassa o limite crítico
+def verificar_condicao(valor):
+    return valor > LIMITE_CRITICO
+
+# Exibe alerta no console
+def alerta_console(valor):
+    print("⚠️ ALERTA CRÍTICO!")
+    print("Valor detectado: " + str(valor))
+    print("Estado: atenção necessária.")
+
+# Simula envio de e-mail de alerta
+def alerta_email(valor):
+    print("\n📧 EMAIL SIMULADO")
+    print("Destino: admin@sistema.com")
+    print("Assunto: Alerta crítico")
+    print("Mensagem: valor crítico detectado -> " + str(valor) + "\n")
+
+# Função principal de monitoramento
+def monitorar(valores):
+    for valor in valores:
+        print("\nMonitorando valor: " + str(valor))
+
+        # Se condição crítica for atingida, dispara alertas
+        if verificar_condicao(valor):
+            alerta_console(valor)
+            alerta_email(valor)
+        else:
+            print("Status normal.")
+
+        # Simula intervalo entre verificações
+        time.sleep(1)
+
+# Lista simulando dados do sistema
+dados = [45, 60, 72, 85, 90, 55, 100]
+
+# Executa o monitoramento
+monitorar(dados)
+🧠 Análise crítica: colaboração humano–IA
+⚙️ 1. Forças observadas na colaboração humano–IA
+1.1 Produtividade e rapidez de construção
+
+Nos seus exemplos, a IA (ou o processo guiado por IA) permite gerar rapidamente:
+
+Verificador de temperatura
+Sistema de organização de arquivos
+Cliente de API (ViaCEP)
+Sistema de monitoramento com alertas
+
+👉 Isso mostra uma força clara:
+a IA acelera a prototipação de soluções completas com pouca fricção técnica.
+
+1.2 Estruturação de código e boas práticas
+
+Mesmo em códigos simples, há presença de:
+
+Funções bem definidas (verificar_temperatura, monitorar, consultar_cep)
+Separação de responsabilidades
+Comentários explicativos
+
+👉 Isso evidencia que a IA ajuda a:
+
+Organizar lógica
+Sugerir modularização
+Tornar o código mais legível
+1.3 Automação de tarefas repetitivas
+
+O sistema de arquivos mostra isso claramente:
+
+Criação automática de arquivos
+Organização por extensão
+Uso de os e shutil
+
+👉 Aqui a força da colaboração humano–IA é:
+transformar tarefas manuais em fluxos automatizados rapidamente.
+
+1.4 Simulação de sistemas reais
+
+Nos exemplos:
+
+Monitoramento de temperatura → simula IoT
+Sistema de alerta → simula observabilidade
+API ViaCEP → simula integração externa
+
+👉 A IA facilita a criação de modelos mentais de sistemas reais sem infraestrutura complexa.
+
+⚠️ 2. Limitações observadas na colaboração humano–IA
+2.1 Falta de robustez em produção
+
+Os códigos são didáticos, mas não prontos para produção:
+
+Não há logs estruturados
+Não há retry em falhas de API
+Não há validação forte de dados
+Não há tratamento avançado de erros
+
+👉 Limitação importante:
+IA tende a gerar soluções funcionais, mas não industrialmente robustas.
+
+2.2 Erros intencionais e fragilidade de integração
+
+Na missão 02:
+
+url = "https://viacp.com.br/ws/"
+
+👉 Isso mostra um ponto crítico:
+
+Pequenos erros quebram sistemas inteiros
+A IA não valida automaticamente contexto real da API
+
+➡️ Resultado: depende do humano identificar falhas.
+
+2.3 Dependência de interpretação humana
+
+Mesmo com comentários, ainda é necessário:
+
+Entender lógica de arquivos
+Interpretar fluxo de execução
+Ajustar parâmetros críticos (ex: limite 80)
+
+👉 Limitação:
+IA não garante compreensão — ela entrega estrutura, não entendimento.
+
+2.4 Simulações podem criar falsa sensação de realidade
+
+Exemplo:
+
+print("EMAIL SIMULADO")
+
+👉 Problema:
+
+Parece sistema real, mas não executa ações reais
+Pode gerar confiança excessiva em sistemas não integrados
+🧩 3. Síntese crítica: humano + IA
+🔷 O que funciona bem nessa colaboração:
+IA gera rapidamente soluções completas
+Humano orienta contexto e corrige erros
+Juntos produzem sistemas funcionais em pouco tempo
+🔶 O que ainda é limitado:
+Validação real de dados externos
+Segurança e confiabilidade em produção
+Decisões arquiteturais profundas
+Testes automatizados e cobertura de erros
+🧠 Conclusão
+
+A colaboração humano–IA mostrada nos seus códigos revela um padrão importante:
+
+A IA é excelente como geradora de estruturas e aceleradora de desenvolvimento, mas depende do humano para validação, contexto e confiabilidade real.
