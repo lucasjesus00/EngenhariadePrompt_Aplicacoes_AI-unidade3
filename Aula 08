@@ -1,0 +1,150 @@
+#Aula 08 AutomaçãoAi
+#Automação com Ai
+#nome: Lucas Mendes
+
+missão 1
+
+# Função que verifica a temperatura
+def verificar_temperatura(temp):
+    # Verifica se a temperatura é maior que 30
+    if temp > 30:
+        # Exibe mensagem de alerta
+        print("⚠️ " + "Alerta: Sistema em superaquecimento!")
+    else:
+        # Exibe mensagem de temperatura normal
+        print("Temperatura " + "normal.")
+
+try:
+    # Solicita ao usuário que digite a temperatura
+    entrada = input("Digite a temperatura atual: ")
+    
+    # Converte o valor digitado para número decimal
+    temperatura_atual = float(entrada)
+    
+    # Chama a função para verificar a temperatura
+    verificar_temperatura(temperatura_atual)
+
+except ValueError:
+    # Trata erro caso o usuário digite algo inválido
+    print("Erro: " + "por favor, digite um número válido.")
+
+import os  # Importa o módulo para interagir com o sistema de arquivos
+
+# Define o diretório onde os arquivos serão criados e organizados
+diretorio = "arquivos_teste"
+
+# Cria o diretório se ele não existir
+if not os.path.exists(diretorio):
+    os.makedirs(diretorio)
+
+# Lista de arquivos de exemplo com diferentes extensões
+arquivos_exemplo = [
+    "documento1.pdf",
+    "imagem1.jpeg",
+    "imagem2.jpg",
+    "planilha1.xlsx",
+    "texto1.txt",
+    "apresentacao1.pptx",
+    "musica1.mp3",
+    "video1.mp4",
+    "script1.py",
+    "arquivo1.zip"
+]
+
+# Cria os 10 arquivos de exemplo dentro do diretório
+for nome_arquivo in arquivos_exemplo:
+    # Monta o caminho completo do arquivo
+    caminho_arquivo = os.path.join(diretorio, nome_arquivo)
+    
+    # Cria o arquivo vazio
+    with open(caminho_arquivo, "w") as f:
+        # Escreve um conteúdo simples dentro do arquivo
+        f.write("Conteúdo de exemplo para " + nome_arquivo)
+
+# Percorre todos os arquivos no diretório
+for arquivo in os.listdir(diretorio):
+    # Monta o caminho completo do arquivo
+    caminho_arquivo = os.path.join(diretorio, arquivo)
+    
+    # Verifica se é um arquivo (e não uma pasta)
+    if os.path.isfile(caminho_arquivo):
+        # Obtém a extensão do arquivo (sem o ponto) e converte para minúsculas
+        extensao = arquivo.split(".")[-1].lower()
+        
+        # Define o nome da pasta com base na extensão
+        pasta_destino = os.path.join(diretorio, extensao)
+        
+        # Cria a pasta de destino se ela não existir
+        if not os.path.exists(pasta_destino):
+            os.makedirs(pasta_destino)
+        
+        # Define o novo caminho do arquivo dentro da pasta correta
+        novo_caminho = os.path.join(pasta_destino, arquivo)
+        
+        # Move o arquivo para a pasta correspondente
+        os.rename(caminho_arquivo, novo_caminho)
+
+# Exibe mensagem final indicando que a organização foi concluída
+print("Organização concluída com sucesso!")
+com as bibliotecas os e shutil
+import os       # Biblioteca para manipulação de arquivos e diretórios
+import shutil   # Biblioteca para mover arquivos entre pastas
+
+# Define o diretório principal onde tudo acontecerá
+diretorio = "arquivos_teste"
+
+# Verifica se o diretório já existe
+if not os.path.exists(diretorio):
+    # Cria o diretório caso não exista
+    os.makedirs(diretorio)
+
+# Lista com 10 arquivos de diferentes extensões
+arquivos_exemplo = [
+    "documento1.pdf",
+    "imagem1.jpeg",
+    "imagem2.jpg",
+    "planilha1.xlsx",
+    "texto1.txt",
+    "apresentacao1.pptx",
+    "musica1.mp3",
+    "video1.mp4",
+    "script1.py",
+    "arquivo1.zip"
+]
+
+# Loop para criar os arquivos de exemplo
+for nome_arquivo in arquivos_exemplo:
+    # Cria o caminho completo do arquivo
+    caminho_arquivo = os.path.join(diretorio, nome_arquivo)
+    
+    # Abre o arquivo no modo de escrita (cria se não existir)
+    with open(caminho_arquivo, "w") as f:
+        # Escreve um conteúdo simples no arquivo
+        f.write("Arquivo de exemplo: " + nome_arquivo)
+
+# Percorre todos os itens dentro do diretório
+for arquivo in os.listdir(diretorio):
+    # Cria o caminho completo do arquivo
+    caminho_arquivo = os.path.join(diretorio, arquivo)
+    
+    # Verifica se é um arquivo (ignora pastas)
+    if os.path.isfile(caminho_arquivo):
+        # Obtém a extensão do arquivo (ex: pdf, txt, jpg)
+        extensao = arquivo.split(".")[-1].lower()
+        
+        # Define o caminho da pasta com base na extensão
+        pasta_destino = os.path.join(diretorio, extensao)
+        
+        # Verifica se a pasta já existe
+        if not os.path.exists(pasta_destino):
+            # Cria a pasta caso não exista
+            os.makedirs(pasta_destino)
+        
+       # Define o novo caminho do arquivo dentro da pasta correta
+        novo_caminho = os.path.join(pasta_destino, arquivo)
+        
+        # Move o arquivo para a pasta correspondente usando shutil
+        shutil.move(caminho_arquivo, novo_caminho)
+
+# Mensagem final indicando sucesso
+print("Organização concluída com sucesso!")
